@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e9eef5, #f4f6f9);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-wrapper {
+        min-height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 440px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 38px 32px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        position: relative;
+        overflow: hidden;
+        transition: 0.3s ease;
+    }
+
+    .login-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 28px 70px rgba(0,0,0,0.15);
+    }
+
+    /* top accent */
+    .login-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 5px;
+        width: 100%;
+        background: linear-gradient(90deg, #0d6efd, #20c997);
+    }
+
+    .login-title {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 800;
+        color: #0d6efd;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        font-size: 13px;
+        color: #6c757d;
+        margin-bottom: 28px;
+    }
+
+    form p {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 13px;
+        color: #343a40;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    input {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 12px;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        font-size: 14px;
+        transition: 0.2s ease;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #0d6efd;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(13,110,253,0.12);
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .btn-login {
+        flex: 1;
+        background: linear-gradient(135deg, #0d6efd, #20c997);
+        border: none;
+        color: white;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s ease;
+    }
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(13,110,253,0.25);
+    }
+
+    .btn-reset {
+        flex: 1;
+        background: #e9ecef;
+        border: none;
+        color: #343a40;
+        padding: 12px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s ease;
+    }
+
+    .btn-reset:hover {
+        background: #dee2e6;
+        transform: translateY(-2px);
+    }
+
+    .login-footer {
+        text-align: center;
+        margin-top: 18px;
+        font-size: 12px;
+        color: #6c757d;
+    }
+
+    .login-footer a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-footer a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="login-title">Welcome Back</div>
+        <div class="login-subtitle">Login to access your Fintracker dashboard</div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="btn-row">
+                <button type="submit" class="btn-login">Login</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+
+        </form>
+
+        <div class="login-footer">
+            Don’t have an account? <a href="{% url 'registration_url' %}">Register here</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

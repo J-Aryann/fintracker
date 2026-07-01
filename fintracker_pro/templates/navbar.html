@@ -1,0 +1,175 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top py-2"
+     style="background: linear-gradient(135deg, #0f172a, #1f2937);">
+
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold fs-4 text-info d-flex align-items-center gap-2" href="{% url 'home_url' %}">
+      💰 FintrackerAPP
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- LEFT MENU -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2 align-items-lg-center">
+
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="{% url 'cerate_salary_url' %}">Salary</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="{% url 'show_salary_url' %}">Salary Data</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="{% url 'create_investment_url' %}">Investment</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="{% url 'show_investment_url' %}">Investment Data</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="{% url 'create_expence_view_url' %}">Expense</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="{% url 'show_expence_view_url' %}">Expense Data</a>
+        </li>
+
+      </ul>
+
+      <!-- RIGHT AUTH -->
+      <ul class="navbar-nav gap-2">
+
+        {% if user.is_authenticated %}
+
+        <!-- USER BADGE -->
+        <li class="nav-item">
+          <span class="user-badge">
+            👤 {{ user }}
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link auth-btn logout" href="{% url 'logout_url' %}">
+            Logout
+          </a>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link auth-btn register" href="{% url 'registration_url' %}">
+            Register
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link auth-btn login" href="{% url 'signin_url' %}">
+            Sign in
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<style>
+/* NAV PILL */
+.nav-pill {
+    color: rgba(255,255,255,0.75) !important;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.nav-pill:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+
+/* ACTIVE STATE (IMPORTANT FIX) */
+.navbar-nav .nav-link.active {
+    background: rgba(59, 130, 246, 0.3);
+    color: #fff !important;
+}
+
+/* USER BADGE */
+.user-badge {
+    background: rgba(255,255,255,0.08);
+    color: #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* AUTH BUTTONS */
+.auth-btn {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: 0.2s ease;
+    text-align: center;
+}
+
+/* Register */
+.auth-btn.register {
+    background: rgba(13,110,253,0.15);
+    color: #93c5fd !important;
+}
+
+.auth-btn.register:hover {
+    background: #0d6efd;
+    color: #fff !important;
+}
+
+/* Login */
+.auth-btn.login {
+    background: rgba(25,135,84,0.15);
+    color: #86efac !important;
+}
+
+.auth-btn.login:hover {
+    background: #198754;
+    color: #fff !important;
+}
+
+/* Logout */
+.auth-btn.logout {
+    background: rgba(220,53,69,0.15);
+    color: #fca5a5 !important;
+}
+
+.auth-btn.logout:hover {
+    background: #dc3545;
+    color: #fff !important;
+}
+
+/* SMOOTH UI */
+.navbar a {
+    transition: 0.2s ease;
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width: 991px) {
+    .nav-pill, .auth-btn {
+        display: block;
+        width: fit-content;
+        margin-bottom: 5px;
+    }
+}
+</style>

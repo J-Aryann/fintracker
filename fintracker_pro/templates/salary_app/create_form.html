@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Salary Form</title>
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f1f3f5, #e9f7ef);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .salary-wrapper {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+    }
+
+    .salary-card {
+        width: 100%;
+        max-width: 650px;
+        padding: 38px 32px;
+        border-radius: 20px;
+        background: #ffffff;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .salary-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 5px;
+        width: 100%;
+        background: linear-gradient(90deg, #198754, #20c997);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .salary-header {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 800;
+        color: #198754;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+
+    .salary-subtitle {
+        text-align: center;
+        font-size: 13px;
+        color: #6c757d;
+        margin-bottom: 28px;
+    }
+
+    form p {
+        margin-bottom: 16px;
+    }
+
+    form label {
+        font-weight: 600;
+        font-size: 13px;
+        color: #343a40;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 12px;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        outline: none;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+        border-color: #198754;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.12);
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .btn-save {
+        flex: 1;
+        background: linear-gradient(135deg, #198754, #20c997);
+        border: none;
+        color: white;
+        padding: 12px;
+        border-radius: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s ease;
+    }
+
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 22px rgba(25, 135, 84, 0.25);
+    }
+
+    .btn-reset {
+        flex: 1;
+        background: #e9ecef;
+        border: none;
+        color: #343a40;
+        padding: 12px;
+        border-radius: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s ease;
+    }
+
+    .btn-reset:hover {
+        background: #dee2e6;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+        .salary-card {
+            padding: 28px 20px;
+        }
+
+        .btn-row {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="salary-wrapper">
+
+    <div class="salary-card">
+
+        <div class="salary-header">Salary Form</div>
+        <div class="salary-subtitle">Enter salary details accurately</div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="btn-row">
+                <button type="submit" class="btn-save">Save Salary</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

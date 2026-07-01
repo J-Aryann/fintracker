@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Delete Expense</title>
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .delete-card {
+        max-width: 650px;
+        margin: 80px auto;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .warning-icon {
+        font-size: 60px;
+        color: #dc3545;
+    }
+
+    .delete-title {
+        color: #dc3545;
+        font-weight: bold;
+        margin: 15px 0;
+    }
+
+    .object-info {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .object-info span {
+        font-weight: bold;
+        color: #0d6efd;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+
+    .btn-delete:hover {
+        background-color: #bb2d3b;
+        color: white;
+    }
+
+    .btn-cancel {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+    }
+
+    .btn-cancel:hover {
+        background-color: #0a58ca;
+        color: white;
+    }
+</style>
+
+<div class="container">
+
+    <div class="delete-card">
+
+        <div class="warning-icon">
+            ⚠️
+        </div>
+
+        <h2 class="delete-title">
+            Delete Confirmation
+        </h2>
+
+        <p class="object-info">
+            Are you sure you want to delete the record?
+            <br><br>
+
+            ID: <span>{{ obj.id }}</span>
+            <br>
+
+            User: <span>{{ obj.user }}</span>
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit"
+                            class="btn btn-delete w-100">
+                        Yes, Delete
+                    </button>
+                </div>
+
+                <div class="col-md-6">
+                    <a href="{% url 'show_expence_view_url' %}"
+                       class="btn btn-cancel w-100">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

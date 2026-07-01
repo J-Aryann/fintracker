@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Expense Form</title>
+{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #eef2f7, #f8f9fc);
+    }
+
+    .expense-form-container {
+        max-width: 720px;
+        margin: 60px auto;
+        padding: 0 15px;
+    }
+
+    .expense-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 38px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+        position: relative;
+        transition: 0.25s ease;
+    }
+
+    /* top accent line */
+    .expense-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 5px;
+        width: 100%;
+        background: linear-gradient(90deg, #3b5bdb, #5c7cfa);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .expense-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .expense-title {
+        text-align: center;
+        font-weight: 800;
+        font-size: 26px;
+        color: #3b5bdb;
+        margin-bottom: 6px;
+    }
+
+    .expense-subtitle {
+        text-align: center;
+        font-size: 13px;
+        color: #6c757d;
+        margin-bottom: 28px;
+    }
+
+    form p {
+        margin-bottom: 16px;
+    }
+
+    form label {
+        font-weight: 600;
+        color: #343a40;
+        font-size: 13px;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border-radius: 12px;
+        border: 1px solid #dee2e6;
+        font-size: 14px;
+        background: #f8f9fa;
+        transition: 0.2s ease;
+        outline: none;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+        border-color: #3b5bdb;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(59, 91, 219, 0.12);
+    }
+
+    .btn-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 22px;
+    }
+
+    .btn-submit {
+        flex: 1;
+        background: linear-gradient(135deg, #3b5bdb, #5c7cfa);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 700;
+        transition: 0.25s ease;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(59, 91, 219, 0.25);
+    }
+
+    .btn-reset {
+        flex: 1;
+        background: #e9ecef;
+        color: #343a40;
+        border: none;
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 700;
+        transition: 0.25s ease;
+    }
+
+    .btn-reset:hover {
+        background: #dee2e6;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+        .expense-card {
+            padding: 28px 20px;
+        }
+
+        .btn-row {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="expense-form-container">
+
+    <div class="expense-card">
+
+        <div class="expense-title">Expense Form</div>
+        <div class="expense-subtitle">Track your daily expenses efficiently</div>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="btn-row">
+                <button class="btn-submit" type="submit">
+                    Save Expense
+                </button>
+
+                <button class="btn-reset" type="reset">
+                    Reset Form
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

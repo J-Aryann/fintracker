@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+ 
+    {% block title %}Investment App{% endblock %}
+    
+
+    <style>
+        /* ---------- GLOBAL THEME ---------- */
+        body {
+            background: #f5f7fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #6a7887;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* ---------- PAGE WRAPPER ---------- */
+        .page-container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            min-height: calc(100vh - 120px);
+        }
+
+        /* ---------- PAGE ANIMATION ---------- */
+        main {
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- LINKS ---------- */
+        a {
+            text-decoration: none;
+        }
+
+        /* ---------- SCROLLBAR ---------- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #b0bcd0;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8fa3bd;
+        }
+
+        /* ---------- OPTIONAL: CARD STYLE (for future use) ---------- */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Content -->
+    <main>
+        <div class="page-container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
